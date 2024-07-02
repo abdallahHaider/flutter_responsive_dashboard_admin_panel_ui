@@ -9,11 +9,11 @@ class ActivityDetailsCard extends StatelessWidget {
 
   final List<HealthModel> healthDetails = const [
     HealthModel(
-        icon: 'assets/svg/burn.svg', value: "305", title: "Calories burned"),
-    HealthModel(icon: 'assets/svg/steps.svg', value: "10,983", title: "Steps"),
+        icon: 'assets/svg/users.svg', value: "305", title: "المستخدمين",color: Colors.red),
+    HealthModel(icon: 'assets/svg/burn.svg', value: "10,983", title: "نقاط الستريم",color: Colors.orange),
     HealthModel(
-        icon: 'assets/svg/distance.svg', value: "7km", title: "Distance"),
-    HealthModel(icon: 'assets/svg/sleep.svg', value: "7h48m", title: "Sleep"),
+        icon: 'assets/svg/videos.svg', value: "7km", title: "فيديوهات الانتظار",color: Colors.purple),
+    HealthModel(icon: 'assets/svg/card.svg', value: "7h48m", title: "بطاقات الستريم",color: Colors.blue),
   ];
 
   @override
@@ -32,7 +32,7 @@ class ActivityDetailsCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SvgPicture.asset(healthDetails[i].icon),
+              SvgPicture.asset(healthDetails[i].icon,color: healthDetails[i].color,width: 32,height: 32,),
               Padding(
                 padding: const EdgeInsets.only(top: 15, bottom: 4),
                 child: Text(
@@ -45,6 +45,7 @@ class ActivityDetailsCard extends StatelessWidget {
               ),
               Text(
                 healthDetails[i].title,
+                textAlign :TextAlign.center,
                 style: const TextStyle(
                     fontSize: 13,
                     color: Colors.grey,

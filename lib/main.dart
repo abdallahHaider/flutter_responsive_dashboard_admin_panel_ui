@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_dashboard/dashboard.dart';
+import 'package:flutter_dashboard/pages/home/login/login.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +14,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+          navigatorObservers: [FlutterSmartDialog.observer],
+      // here
+      builder: FlutterSmartDialog.init(),
       title: 'Flutter Responsive Dashboard',
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
@@ -34,7 +39,8 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Color(0xFF171821),
           fontFamily: 'IBMPlexSans',
           brightness: Brightness.dark),
-      home: DashBoard(),
+          
+      home: LoginPage(),
     );
   }
 }
