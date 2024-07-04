@@ -5,19 +5,21 @@ import 'package:flutter_dashboard/widgets/custom_card.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ActivityDetailsCard extends StatelessWidget {
-  const ActivityDetailsCard({super.key});
+  var data;
+   ActivityDetailsCard({super.key,required this.data});
 
-  final List<HealthModel> healthDetails = const [
-    HealthModel(
-        icon: 'assets/svg/users.svg', value: "305", title: "المستخدمين",color: Colors.red),
-    HealthModel(icon: 'assets/svg/burn.svg', value: "10,983", title: "نقاط الستريم",color: Colors.orange),
-    HealthModel(
-        icon: 'assets/svg/videos.svg', value: "7km", title: "فيديوهات الانتظار",color: Colors.purple),
-    HealthModel(icon: 'assets/svg/card.svg', value: "7h48m", title: "بطاقات الستريم",color: Colors.blue),
-  ];
+ 
 
   @override
   Widget build(BuildContext context) {
+     List<HealthModel> healthDetails =  [
+    HealthModel(
+        icon: 'assets/svg/users.svg', value: data['users'].toString(), title: "المستخدمين",color: Colors.red),
+    HealthModel(icon: 'assets/svg/burn.svg', value: data['stream_points'].toString(), title: "نقاط الستريم",color: Colors.orange),
+    HealthModel(
+        icon: 'assets/svg/videos.svg', value:  data['wait_videos'].toString(), title: "فيديوهات الانتظار",color: Colors.purple),
+    HealthModel(icon: 'assets/svg/card.svg', value:  data['video_bosts'].toString(), title: "بطاقات الستريم",color: Colors.blue),
+  ];
     return GridView.builder(
       itemCount: healthDetails.length,
       shrinkWrap: true,

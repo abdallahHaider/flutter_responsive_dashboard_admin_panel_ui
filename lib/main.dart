@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dashboard/api_server.dart';
 import 'package:flutter_dashboard/const.dart';
 import 'package:flutter_dashboard/dashboard.dart';
-import 'package:flutter_dashboard/pages/home/login/login.dart';
+import 'package:flutter_dashboard/model/user_model.dart';
+import 'package:flutter_dashboard/pages/login/login.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+Widget startScreen = LoginPage();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  var shared = await SharedPreferences.getInstance();
+  if (shared.getString('token') !=null) {
+    try {
+      User user = await MainApi.viewAccount(shared.getString('token')!);
+      if (user.permission != null) {
+        startScreen = DashBoard();
+      }
+    } catch (e) {
+    }
+  }
   runApp(const MyApp());
 }
 
@@ -14,8 +29,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-          navigatorObservers: [FlutterSmartDialog.observer],
-      // here
+      navigatorObservers: [FlutterSmartDialog.observer],
       builder: FlutterSmartDialog.init(),
       title: 'Flutter Responsive Dashboard',
       debugShowCheckedModeBanner: false,
@@ -39,8 +53,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Color(0xFF171821),
           fontFamily: 'IBMPlexSans',
           brightness: Brightness.dark),
-          
-      home: LoginPage(),
+      home:startScreen,
     );
   }
 }

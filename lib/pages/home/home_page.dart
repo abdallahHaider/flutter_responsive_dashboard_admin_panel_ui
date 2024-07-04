@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dashboard/pages/home/api_server.dart';
+import 'package:flutter_dashboard/pages/home/widgets/activity_details.card_loading.dart';
 import 'package:flutter_dashboard/pages/home/widgets/header_widget.dart';
 import 'package:flutter_dashboard/responsive.dart';
 import 'package:flutter_dashboard/pages/home/widgets/activity_details_card.dart';
-import 'package:flutter_dashboard/pages/home/widgets/bar_graph_card.dart';
 import 'package:flutter_dashboard/pages/home/widgets/line_chart_card.dart';
+import 'package:flutter_dashboard/widgets/custom_card.dart';
 
 class HomePage extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
@@ -29,14 +31,34 @@ class HomePage extends StatelessWidget {
               ),
               Header(scaffoldKey: scaffoldKey),
               _height(context),
-              const ActivityDetailsCard(),
+              __getGeneralInformation,
               _height(context),
+              
               LineChartCard(),
               _height(context),
-              BarGraphCard(),
-              _height(context),
+             
             ],
           ),
         )));
   }
 }
+
+Widget get __getGeneralInformation {
+  return FutureBuilder(
+    future: HomeApi.getDashbordGeneralInformation,
+    builder: (BuildContext context, AsyncSnapshot snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return const ActivityDetailsCardLoading();
+      } else if (snapshot.hasData) {
+        return ActivityDetailsCard(data: snapshot.data);
+      } else {
+        return const CustomCard(
+          width: double.infinity,
+          height: 100,
+          child: Center(child: Text('حدثت مشكلة بجلب المعلومات العامة')),
+        );
+      }
+    },
+  );
+}
+
