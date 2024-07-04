@@ -8,16 +8,9 @@ class WeightHeightBloodCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomCard(
-      color: const Color(0xFF2F353E),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          details("Weight", "53kg"),
-          details("Height", "162cm"),
-          details("Blood Type", "O+"),
-        ],
-      ),
+    return const CustomCard(
+      color:  Color(0xFF2F353E),
+      child: Text("جميع العمليات التي تقوم بها تسجل في قاعدة البيانات مما يتيح للادمن المسؤول الاطلاع عليها",textAlign: TextAlign.center,)
     );
   }
 

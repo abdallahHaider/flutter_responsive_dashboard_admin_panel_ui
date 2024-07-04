@@ -13,13 +13,14 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
+
   List<MenuModel> menu = [
-    MenuModel(icon: 'assets/svg/home.svg', title: "Dashboard"),
-    MenuModel(icon: 'assets/svg/profile.svg', title: "Profile"),
-    MenuModel(icon: 'assets/svg/exercise.svg', title: "Exercise"),
-    MenuModel(icon: 'assets/svg/setting.svg', title: "Settings"),
-    MenuModel(icon: 'assets/svg/history.svg', title: "History"),
-    MenuModel(icon: 'assets/svg/signout.svg', title: "Signout"),
+    MenuModel(icon: 'assets/svg/home.svg', title: "المعلومات العامة"),
+    MenuModel(icon: 'assets/svg/profile.svg', title: "الادمنز"),
+    MenuModel(icon: 'assets/svg/exercise.svg', title: "الفرق"),
+    MenuModel(icon: 'assets/svg/setting.svg', title: "اغاني الستريم"),
+    MenuModel(icon: 'assets/svg/history.svg', title: "فيديوهات الانتظار"),
+    MenuModel(icon: 'assets/svg/signout.svg', title: "تسجيل الخروج"),
   ];
 
   int selected = 0;

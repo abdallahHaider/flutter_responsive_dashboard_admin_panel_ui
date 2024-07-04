@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/pages/home/home_page.dart';
+import 'package:flutter_dashboard/provider/user_provider.dart';
 import 'package:flutter_dashboard/widgets/menu.dart';
 import 'package:flutter_dashboard/Responsive.dart';
 import 'package:flutter_dashboard/widgets/profile/profile.dart';
+import 'package:provider/provider.dart';
 
 class DashBoard extends StatelessWidget {
   DashBoard({super.key});
