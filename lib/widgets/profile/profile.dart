@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/provider/user_provider.dart';
 import 'package:flutter_dashboard/responsive.dart';
 import 'package:flutter_dashboard/const.dart';
-import 'package:flutter_dashboard/widgets/profile/widgets/scheduled.dart';
 import 'package:flutter_dashboard/widgets/profile/widgets/weightHeightBloodCard.dart';
 import 'package:provider/provider.dart';
 

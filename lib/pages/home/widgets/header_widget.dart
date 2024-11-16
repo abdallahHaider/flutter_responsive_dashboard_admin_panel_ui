@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard/const.dart';
+import 'package:flutter_dashboard/provider/select_provider.dart';
 import 'package:flutter_dashboard/responsive.dart';
+import 'package:provider/provider.dart';
 
 class Header extends StatelessWidget {
-  const Header({
-    super.key,
-    required this.scaffoldKey,
-  });
+  String text;
 
-  final GlobalKey<ScaffoldState> scaffoldKey;
+   Header({
+    super.key,required this.text
+  });
 
   @override
   Widget build(BuildContext context) {
+    var key= Provider.of<SelectProvider>(context).key;
     return SizedBox(
       height: 35,
       child: Row(
@@ -21,7 +23,7 @@ class Header extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: InkWell(
-                onTap: () => scaffoldKey.currentState!.openDrawer(),
+                onTap: () => key.currentState!.openDrawer(),
                 child: const Padding(
                   padding: EdgeInsets.all(3.0),
                   child: Icon(
@@ -33,24 +35,17 @@ class Header extends StatelessWidget {
               ),
             ),
           if (!Responsive.isMobile(context))
-         const   Expanded(
+            Expanded(
               flex: 4,
-              child: Text("المعلومات العامة")
+              child: Text(text)
             ),
           if (Responsive.isMobile(context))
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.search,
-                    color: Colors.grey,
-                    size: 25,
-                  ),
-                  onPressed: () {},
-                ),
+               
                 InkWell(
-                  onTap: () => scaffoldKey.currentState!.openEndDrawer(),
+                  onTap: () => key.currentState!.openEndDrawer(),
                   child: CircleAvatar(
                     backgroundColor: Colors.transparent,
                     child: Image.asset(

@@ -8,9 +8,8 @@ import 'package:flutter_dashboard/pages/home/widgets/line_chart_card.dart';
 import 'package:flutter_dashboard/widgets/custom_card.dart';
 
 class HomePage extends StatelessWidget {
-  final GlobalKey<ScaffoldState> scaffoldKey;
 
-  const HomePage({super.key, required this.scaffoldKey});
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +25,13 @@ class HomePage extends StatelessWidget {
               horizontal: Responsive.isMobile(context) ? 15 : 18),
           child: Column(
             children: [
+              
               SizedBox(
                 height: Responsive.isMobile(context) ? 5 : 18,
               ),
-              Header(scaffoldKey: scaffoldKey),
+              
+              Header(text: "المعلومات العامة"),
+              
               _height(context),
               __getGeneralInformation,
               _height(context),

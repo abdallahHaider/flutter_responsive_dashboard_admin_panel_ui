@@ -4,9 +4,11 @@ import 'package:flutter_dashboard/errors/server_error.dart';
 import 'package:flutter_dashboard/pages/login/api_server.dart';
 import 'package:flutter_dashboard/pages/login/widgets/login_button.dart';
 import 'package:flutter_dashboard/pages/login/widgets/logo.dart';
+import 'package:flutter_dashboard/provider/user_provider.dart';
 import 'package:flutter_dashboard/responsive.dart';
 import 'package:flutter_dashboard/widgets/text_field.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatelessWidget {
@@ -78,12 +80,14 @@ class LoginPage extends StatelessWidget {
 void _login(String email, String password, BuildContext context) async {
   SmartDialog.showLoading();
   try {
-    await LoginApi.login(email, password);
+    var user =await LoginApi.login(email, password);
     SmartDialog.dismiss();
-  
+  // ignore: use_build_context_synchronously
+  Provider.of<UserProvider>(context,listen: false).setUser(user);
     Navigator.of(context)
         .pushReplacement(MaterialPageRoute(builder: (c) => DashBoard()));
   } catch (e) {
+    print(e);
     SmartDialog.dismiss();
 
     if (e is ServerError) {

@@ -21,7 +21,7 @@ void main() async {
       
       User user = await MainApi.viewAccount(shared.getString('token')!);
       pp.setUser(user);
-      if (user.permission != null) {
+      if (user.permissions.isNotEmpty) {
         startScreen = DashBoard();
       }
     } catch (e) {
